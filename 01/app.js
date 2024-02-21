@@ -1,13 +1,22 @@
 const express = require("express");
+const fs = require("fs");
 
 const app = express();
 
 app.get("/", (req, res) => {
-  res.status(200).send("Hello Worldddd!!");
+  fs.readFile("./data.txt", "utf8", (err, data) => {
+    if (err) res.send("Cannot read file!");
+
+    res.send(data);
+  });
 });
 
-app.get("/k_cha", (req, res) => {
-  res.status(200).send("Hello World! ani k cha ta??");
+app.get("/write", (req, res) => {
+  const writingData = "Mango";
+  fs.writeFile("./data.txt", writingData, (err) => {
+    if (err) res.send("Error writing");
+    res.send("Write Successful");
+  });
 });
 
 app.listen(8000, () => {
