@@ -12,10 +12,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/write", (req, res) => {
-  const writingData = "Mango";
+  const writingData = "Mclaren";
   fs.writeFile("./data.txt", writingData, (err) => {
-    if (err) res.send("Error writing");
-    res.send("Write Successful");
+    if (err) res.send("Error in writing");
+    res.send("Write is Successful");
   });
 });
 
