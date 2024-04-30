@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userRegister = async (req, res) => {
   const Users = mongoose.model("users");
@@ -8,12 +9,13 @@ const userRegister = async (req, res) => {
   // validation logic here
 
   //creation logic here
+  const encPwd = await bcrypt.hash(password, 10);
 
   try {
     const createdUser = await Users.create({
-      name,
+      name, //name:name
       email,
-      password,
+      password: encPwd,
       balance,
       address,
     });
