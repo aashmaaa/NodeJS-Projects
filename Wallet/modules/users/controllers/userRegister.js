@@ -21,11 +21,11 @@ const userRegister = async (req, res) => {
     });
   } catch (e) {
     res.status(400).json({ status: "failed", message: e.message });
+    return;
   }
   res.status(200).json({
     status: "Inside userRegister!!!",
   });
-  return;
 };
 
 module.exports = userRegister;

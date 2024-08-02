@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const userRouter = require("./modules/users/users.routes");
 const incomeRouter = require("./modules/income/income.routes");
+const expenseRouter = require("./modules/expense/expense.routes");
 
 require("dotenv").config();
 
@@ -11,6 +12,7 @@ app.use(express.json());
 //Models
 
 require("./models/users.model");
+require("./models/transaction.model");
 
 mongoose
   .connect(process.env.mongo_connect, {})
@@ -24,7 +26,8 @@ mongoose
 //routes
 app.use("/users", userRouter);
 app.use("/income", incomeRouter);
+app.use("/expense", expenseRouter);
 
-app.listen(8080, () => {
+app.listen(8000, () => {
   console.log("Server started!");
 });
